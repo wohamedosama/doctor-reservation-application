@@ -11,15 +11,12 @@ class AppRouter {
           builder: (context) => const OnBoardingScreen(),
         );
       case Routes.loginScreen:
-        return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route found ${settings.name}'),
-            ),
+            body: Center(child: Text('No route found ${settings.name}')),
           ),
         );
     }

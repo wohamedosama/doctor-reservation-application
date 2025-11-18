@@ -15,7 +15,7 @@ class TextStyles {
   );
   static TextStyle font12GrayRegular = TextStyle(
     fontSize: 12.sp,
-    color: AppColor.grayColor30,
+    color: AppColor.grayColor70,
     fontWeight: FontWeight.w400,
   );
   static TextStyle font18WhiteSemiBold = TextStyle(

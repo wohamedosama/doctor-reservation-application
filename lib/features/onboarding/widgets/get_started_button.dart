@@ -1,7 +1,7 @@
 import 'package:doctor_reservation_app/core/helpers/extension.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
-import 'package:doctor_reservation_app/core/theme/color/app_color.dart';
-import 'package:doctor_reservation_app/core/theme/text_style/text_styles.dart';
+import 'package:doctor_reservation_app/core/theme/app_color.dart';
+import 'package:doctor_reservation_app/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedButton extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:doctor_reservation_app/core/theme/text_style/text_styles.dart';
+import 'package:doctor_reservation_app/core/theme/text_styles.dart';
 import 'package:doctor_reservation_app/features/onboarding/widgets/doc_logo_and_name.dart';
 import 'package:doctor_reservation_app/features/onboarding/widgets/doctor_image_and_text.dart';
 import 'package:doctor_reservation_app/features/onboarding/widgets/get_started_button.dart';
@@ -25,7 +25,7 @@ class OnBoardingScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Text(
                     'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
-                    style: TextStyles.font12GrayRegular,
+                    style: TextStyles.font12Gray70Regular,
                     textAlign: TextAlign.center,
                   ),
                 ),

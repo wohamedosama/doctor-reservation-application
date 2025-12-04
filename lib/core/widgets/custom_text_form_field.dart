@@ -4,6 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  final Widget? suffixIcon;
+  final Color? backgroundColor;
+  final String hintText;
+  final bool? isObscureText;
+  final TextStyle? hintStyle;
+  final EdgeInsets? contentPadding;
+  final OutlineInputBorder? focusedBorder;
+  final OutlineInputBorder? enabledBorder;
+  final OutlineInputBorder? errorBorder;
+  final TextEditingController? controller;
+  final String? Function(String) validator;
   const CustomTextFormField({
     super.key,
     this.suffixIcon,
@@ -15,29 +26,17 @@ class CustomTextFormField extends StatelessWidget {
     this.focusedBorder,
     this.enabledBorder,
     this.errorBorder,
+    this.controller,
+    required this.validator,
   });
-  final Widget? suffixIcon;
-  final Color? backgroundColor;
-  final String hintText;
-  final bool? isObscureText;
-  final TextStyle? hintStyle;
-  final EdgeInsets? contentPadding;
-  final OutlineInputBorder? focusedBorder;
-  final OutlineInputBorder? enabledBorder;
-  final OutlineInputBorder? errorBorder;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       style: TextStyles.font14Gray100Medium,
       obscureText: isObscureText ?? false,
-      onTap: () {},
       decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        filled: true,
-        fillColor: backgroundColor ?? AppColor.grayColor10,
-        hintStyle: hintStyle ?? TextStyles.font14Gray50Medium,
-        hintText: hintText,
         isDense: true,
         contentPadding: contentPadding ??
             EdgeInsets.symmetric(
@@ -68,7 +67,22 @@ class CustomTextFormField extends StatelessWidget {
                 width: 1.3.w,
               ),
             ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: BorderSide(
+            color: AppColor.fillRed,
+            width: 1.3.w,
+          ),
+        ),
+        hintStyle: hintStyle ?? TextStyles.font14Gray50Medium,
+        hintText: hintText,
+        suffixIcon: suffixIcon,
+        fillColor: backgroundColor ?? AppColor.grayColor10,
+        filled: true,
       ),
+      validator: (value) {
+        return validator(value!);
+      },
     );
   }
 }

@@ -1,7 +1,11 @@
+import 'package:doctor_reservation_app/core/di/dependency_injection.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
+import 'package:doctor_reservation_app/features/auth/logic/cubit/login_cubit.dart';
 import 'package:doctor_reservation_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:doctor_reservation_app/features/home/presentation/screens/home_screen.dart';
 import 'package:doctor_reservation_app/features/onboarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {
@@ -11,7 +15,16 @@ class AppRouter {
           builder: (context) => const OnBoardingScreen(),
         );
       case Routes.loginScreen:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<LoginCubit>(),
+            child: const LoginScreen(),
+          ),
+        );
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        );
 
       default:
         return MaterialPageRoute(

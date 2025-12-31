@@ -1,8 +1,11 @@
+import 'package:doctor_reservation_app/core/helpers/extension.dart';
+import 'package:doctor_reservation_app/core/routing/routes.dart';
 import 'package:doctor_reservation_app/core/theme/text_styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class AlreadyHaveAnAccount extends StatelessWidget {
-  const AlreadyHaveAnAccount({super.key});
+class DonotHaveAnAccount extends StatelessWidget {
+  const DonotHaveAnAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +14,16 @@ class AlreadyHaveAnAccount extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Already have an account yet? ',
+            text: 'Don\t have an account ',
             style: TextStyles.font13Gray100Medium,
           ),
           TextSpan(
             text: 'Sign Up',
             style: TextStyles.font13PrimarySemiBold,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                context.pushNamed(Routes.signupScreen);
+              },
           ),
         ],
       ),

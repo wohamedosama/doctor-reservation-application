@@ -1,11 +1,11 @@
 import 'package:doctor_reservation_app/core/helpers/spacing.dart';
 import 'package:doctor_reservation_app/core/theme/text_styles.dart';
 import 'package:doctor_reservation_app/core/widgets/custom_text_button.dart';
-import 'package:doctor_reservation_app/features/auth/logic/cubit/login_cubit.dart';
-import 'package:doctor_reservation_app/features/auth/presentation/widgets/already_have_an_account.dart';
-import 'package:doctor_reservation_app/features/auth/presentation/widgets/build_bloc_listner.dart';
-import 'package:doctor_reservation_app/features/auth/presentation/widgets/email_and_password.dart';
-import 'package:doctor_reservation_app/features/auth/presentation/widgets/terms_and_conditions.dart';
+import 'package:doctor_reservation_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:doctor_reservation_app/features/login/presentation/widgets/build_bloc_listner.dart';
+import 'package:doctor_reservation_app/features/login/presentation/widgets/donot_have_an_account.dart';
+import 'package:doctor_reservation_app/features/login/presentation/widgets/email_and_password.dart';
+import 'package:doctor_reservation_app/features/login/presentation/widgets/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     verticalSpace(24),
                     const TermsAndConditions(),
                     verticalSpace(40),
-                    const AlreadyHaveAnAccount(),
+                    const DonotHaveAnAccount(),
                     const BuildBlocListner(),
                   ],
                 )
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void validateThenLogin(BuildContext context) {
     final formKey = context.read<LoginCubit>().formKey;
     if (formKey.currentState?.validate() ?? false) {
-      context.read<LoginCubit>().emilLoginState();
+      context.read<LoginCubit>().emitLoginState();
     }
   }
 }

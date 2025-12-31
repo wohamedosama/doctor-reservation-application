@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'api_reuslt.dart';
+part of 'signup_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,11 +13,11 @@ part of 'api_reuslt.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$ApiReuslt<T> {
+mixin _$SignupState<T> {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ApiReuslt<T>);
+        (other.runtimeType == runtimeType && other is SignupState<T>);
   }
 
   @override
@@ -25,17 +25,17 @@ mixin _$ApiReuslt<T> {
 
   @override
   String toString() {
-    return 'ApiReuslt<$T>()';
+    return 'SignupState<$T>()';
   }
 }
 
 /// @nodoc
-class $ApiReusltCopyWith<T, $Res> {
-  $ApiReusltCopyWith(ApiReuslt<T> _, $Res Function(ApiReuslt<T>) __);
+class $SignupStateCopyWith<T, $Res> {
+  $SignupStateCopyWith(SignupState<T> _, $Res Function(SignupState<T>) __);
 }
 
-/// Adds pattern-matching-related methods to [ApiReuslt].
-extension ApiReusltPatterns<T> on ApiReuslt<T> {
+/// Adds pattern-matching-related methods to [SignupState].
+extension SignupStatePatterns<T> on SignupState<T> {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -50,12 +50,18 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(Loading<T> value)? loading,
     TResult Function(Success<T> value)? success,
     TResult Function(Failure<T> value)? failure,
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that);
+      case Loading() when loading != null:
+        return loading(_that);
       case Success() when success != null:
         return success(_that);
       case Failure() when failure != null:
@@ -80,11 +86,17 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial<T> value) initial,
+    required TResult Function(Loading<T> value) loading,
     required TResult Function(Success<T> value) success,
     required TResult Function(Failure<T> value) failure,
   }) {
     final _that = this;
     switch (_that) {
+      case _Initial():
+        return initial(_that);
+      case Loading():
+        return loading(_that);
       case Success():
         return success(_that);
       case Failure():
@@ -108,11 +120,17 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial<T> value)? initial,
+    TResult? Function(Loading<T> value)? loading,
     TResult? Function(Success<T> value)? success,
     TResult? Function(Failure<T> value)? failure,
   }) {
     final _that = this;
     switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that);
+      case Loading() when loading != null:
+        return loading(_that);
       case Success() when success != null:
         return success(_that);
       case Failure() when failure != null:
@@ -136,16 +154,22 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(ErrorHandler errorHandler)? failure,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(T date)? success,
+    TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
+      case _Initial() when initial != null:
+        return initial();
+      case Loading() when loading != null:
+        return loading();
       case Success() when success != null:
-        return success(_that.data);
+        return success(_that.date);
       case Failure() when failure != null:
-        return failure(_that.errorHandler);
+        return failure(_that.message);
       case _:
         return orElse();
     }
@@ -166,15 +190,21 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T data) success,
-    required TResult Function(ErrorHandler errorHandler) failure,
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(T date) success,
+    required TResult Function(String message) failure,
   }) {
     final _that = this;
     switch (_that) {
+      case _Initial():
+        return initial();
+      case Loading():
+        return loading();
       case Success():
-        return success(_that.data);
+        return success(_that.date);
       case Failure():
-        return failure(_that.errorHandler);
+        return failure(_that.message);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -194,15 +224,21 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? success,
-    TResult? Function(ErrorHandler errorHandler)? failure,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(T date)? success,
+    TResult? Function(String message)? failure,
   }) {
     final _that = this;
     switch (_that) {
+      case _Initial() when initial != null:
+        return initial();
+      case Loading() when loading != null:
+        return loading();
       case Success() when success != null:
-        return success(_that.data);
+        return success(_that.date);
       case Failure() when failure != null:
-        return failure(_that.errorHandler);
+        return failure(_that.message);
       case _:
         return null;
     }
@@ -211,12 +247,52 @@ extension ApiReusltPatterns<T> on ApiReuslt<T> {
 
 /// @nodoc
 
-class Success<T> implements ApiReuslt<T> {
-  const Success(this.data);
+class _Initial<T> implements SignupState<T> {
+  const _Initial();
 
-  final T data;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Initial<T>);
+  }
 
-  /// Create a copy of ApiReuslt
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'SignupState<$T>.initial()';
+  }
+}
+
+/// @nodoc
+
+class Loading<T> implements SignupState<T> {
+  const Loading();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading<T>);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'SignupState<$T>.loading()';
+  }
+}
+
+/// @nodoc
+
+class Success<T> implements SignupState<T> {
+  const Success(this.date);
+
+  final T date;
+
+  /// Create a copy of SignupState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
@@ -228,26 +304,26 @@ class Success<T> implements ApiReuslt<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Success<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(date));
 
   @override
   String toString() {
-    return 'ApiReuslt<$T>.success(data: $data)';
+    return 'SignupState<$T>.success(date: $date)';
   }
 }
 
 /// @nodoc
 abstract mixin class $SuccessCopyWith<T, $Res>
-    implements $ApiReusltCopyWith<T, $Res> {
+    implements $SignupStateCopyWith<T, $Res> {
   factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) =
       _$SuccessCopyWithImpl;
   @useResult
-  $Res call({T data});
+  $Res call({T date});
 }
 
 /// @nodoc
@@ -257,16 +333,16 @@ class _$SuccessCopyWithImpl<T, $Res> implements $SuccessCopyWith<T, $Res> {
   final Success<T> _self;
   final $Res Function(Success<T>) _then;
 
-  /// Create a copy of ApiReuslt
+  /// Create a copy of SignupState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? data = freezed,
+    Object? date = freezed,
   }) {
     return _then(Success<T>(
-      freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
+      freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
               as T,
     ));
   }
@@ -274,12 +350,12 @@ class _$SuccessCopyWithImpl<T, $Res> implements $SuccessCopyWith<T, $Res> {
 
 /// @nodoc
 
-class Failure<T> implements ApiReuslt<T> {
-  const Failure(this.errorHandler);
+class Failure<T> implements SignupState<T> {
+  const Failure(this.message);
 
-  final ErrorHandler errorHandler;
+  final String message;
 
-  /// Create a copy of ApiReuslt
+  /// Create a copy of SignupState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
@@ -291,26 +367,25 @@ class Failure<T> implements ApiReuslt<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Failure<T> &&
-            (identical(other.errorHandler, errorHandler) ||
-                other.errorHandler == errorHandler));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorHandler);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @override
   String toString() {
-    return 'ApiReuslt<$T>.failure(errorHandler: $errorHandler)';
+    return 'SignupState<$T>.failure(message: $message)';
   }
 }
 
 /// @nodoc
 abstract mixin class $FailureCopyWith<T, $Res>
-    implements $ApiReusltCopyWith<T, $Res> {
+    implements $SignupStateCopyWith<T, $Res> {
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) =
       _$FailureCopyWithImpl;
   @useResult
-  $Res call({ErrorHandler errorHandler});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -320,17 +395,17 @@ class _$FailureCopyWithImpl<T, $Res> implements $FailureCopyWith<T, $Res> {
   final Failure<T> _self;
   final $Res Function(Failure<T>) _then;
 
-  /// Create a copy of ApiReuslt
+  /// Create a copy of SignupState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? errorHandler = null,
+    Object? message = null,
   }) {
     return _then(Failure<T>(
-      null == errorHandler
-          ? _self.errorHandler
-          : errorHandler // ignore: cast_nullable_to_non_nullable
-              as ErrorHandler,
+      null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }

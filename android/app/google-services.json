@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "929614850850",
+    "project_id": "flutter-app-distribution-2b965",
+    "storage_bucket": "flutter-app-distribution-2b965.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929614850850:android:a87e50722b884a7e0b537b",
+        "android_client_info": {
+          "package_name": "com.example.doctor_reservation_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUjm4TRRTHuHOH2L7g23jab7eBqnyz1eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

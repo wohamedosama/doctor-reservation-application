@@ -2,8 +2,8 @@ import 'package:doctor_reservation_app/core/helpers/app_regex.dart';
 import 'package:doctor_reservation_app/core/helpers/spacing.dart';
 import 'package:doctor_reservation_app/core/theme/app_color.dart';
 import 'package:doctor_reservation_app/core/widgets/custom_text_form_field.dart';
-import 'package:doctor_reservation_app/features/auth/logic/cubit/login_cubit.dart';
-import 'package:doctor_reservation_app/features/auth/presentation/widgets/password_validation.dart';
+import 'package:doctor_reservation_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:doctor_reservation_app/features/login/presentation/widgets/password_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +16,6 @@ class EmailAndPassword extends StatefulWidget {
 
 class _EmailAndPasswordState extends State<EmailAndPassword> {
   bool isObscureText = true;
-
   bool hasLowerCase = false;
   bool hasUpperCase = false;
   bool hasNumber = false;
@@ -24,7 +23,6 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   bool hasMinimumLength = false;
 
   late TextEditingController passwordController;
-  late VoidCallback passwordListener;
 
   @override
   void initState() {
@@ -34,7 +32,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   }
 
   void setupPasswordControllerListener() {
-    passwordListener = () {
+    passwordController.addListener(() {
       setState(() {
         hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
         hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
@@ -43,8 +41,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             AppRegex.hasSpecialCharacter(passwordController.text);
         hasMinimumLength = AppRegex.hasMinLength(passwordController.text);
       });
-    };
-    passwordController.addListener(passwordListener);
+    });
   }
 
   @override
@@ -102,7 +99,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   @override
   void dispose() {
-    passwordController.removeListener(passwordListener);
+    passwordController.dispose();
     super.dispose();
   }
 }

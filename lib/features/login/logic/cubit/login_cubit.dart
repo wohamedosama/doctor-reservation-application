@@ -1,7 +1,7 @@
 import 'package:doctor_reservation_app/core/networking/api_reuslt.dart';
-import 'package:doctor_reservation_app/features/auth/data/model/login_request_body.dart';
-import 'package:doctor_reservation_app/features/auth/data/repo/login_repo.dart';
-import 'package:doctor_reservation_app/features/auth/logic/cubit/login_state.dart';
+import 'package:doctor_reservation_app/features/login/data/model/login_request_body.dart';
+import 'package:doctor_reservation_app/features/login/data/repo/login_repo.dart';
+import 'package:doctor_reservation_app/features/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,7 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController passwordController = TextEditingController();
 
   LoginCubit(this._loginRepo) : super(const LoginState.initial());
-  void emilLoginState() async {
+  void emitLoginState() async {
     emit(const LoginState.loading());
     final response = await _loginRepo.login(
       LoginRequestBody(
@@ -23,7 +23,8 @@ class LoginCubit extends Cubit<LoginState> {
     );
     response.when(
       success: (loginResponse) => emit(LoginState.success(loginResponse)),
-      failure: (error) => emit(LoginState.failure(error)),
+      failure: (error) => emit(LoginState.failure(
+          error.apiErrorModel.message ?? "SignupRequestBody")),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:doctor_reservation_app/core/theme/app_color.dart';
+import 'package:doctor_reservation_app/features/home/presentation/widget/home_top_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,11 +7,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Home Screen'),
-        backgroundColor: AppColor.primaryColorSurface,
-      ),
+      body: SafeArea(
+          child: Container(
+        margin: const EdgeInsets.fromLTRB(
+          20,
+          16,
+          20,
+          16,
+        ),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HomeTopBar(),
+          ],
+        ),
+      )),
     );
   }
 }

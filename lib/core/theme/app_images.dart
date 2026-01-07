@@ -6,4 +6,5 @@ class Assets {
   static const String doctorLogoWithLowOpacity =
       'assets/svgs/doctor_logo_with_low_opacity.svg';
   static const String doctorLogo = 'assets/svgs/doctor_logo.svg';
+  static const String notification = 'assets/svgs/notification.svg';
 }

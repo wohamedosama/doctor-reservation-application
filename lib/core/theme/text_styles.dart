@@ -10,6 +10,11 @@ class TextStyles {
     color: AppColor.grayColor70,
     fontWeight: FontWeightHelper.regular,
   );
+  static TextStyle font12GrayColor80 = TextStyle(
+    fontSize: 12.sp,
+    color: AppColor.grayColor80,
+    fontWeight: FontWeightHelper.regular,
+  );
   static TextStyle font14Gray70Regular = TextStyle(
     fontSize: 14.sp,
     color: AppColor.grayColor70,
@@ -62,6 +67,11 @@ class TextStyles {
   static TextStyle font32PrimayBold = TextStyle(
     fontSize: 32.sp,
     color: AppColor.primaryColor100,
+    fontWeight: FontWeightHelper.bold,
+  );
+  static TextStyle font18GrayColor100Bold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColor.grayColor100,
     fontWeight: FontWeightHelper.bold,
   );
 

@@ -20,7 +20,7 @@ class DocApp extends StatelessWidget {
           primaryColor: AppColor.primaryColor100,
           scaffoldBackgroundColor: AppColor.whiteColor,
         ),
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: Routes.homeScreen,
         onGenerateRoute: appRouter.onGenerateRoute,
       ),
     );

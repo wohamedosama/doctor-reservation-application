@@ -3,16 +3,16 @@ import 'package:doctor_reservation_app/features/home/presentation/widget/doctors
 import 'package:flutter/widgets.dart';
 
 class DoctorsListView extends StatelessWidget {
-  const DoctorsListView({super.key, required this.doctorsModel});
-  final List<DoctorsModel> doctorsModel;
+  const DoctorsListView({super.key, this.doctorsModel});
+  final List<DoctorsModel?>? doctorsModel;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: doctorsModel.length,
+        itemCount: doctorsModel?.length,
         itemBuilder: (context, index) {
           return DoctorsListViewItem(
-            doctorsModel: doctorsModel[index],
+            doctorsModel: doctorsModel?[index],
           );
         },
       ),

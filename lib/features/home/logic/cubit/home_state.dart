@@ -1,3 +1,4 @@
+import 'package:doctor_reservation_app/core/networking/api_error_handler.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_state.freezed.dart';
@@ -8,5 +9,6 @@ class HomeState<T> with _$HomeState<T> {
   const factory HomeState.specializationLoading() = SpecializationLoading;
   const factory HomeState.specializationSuccess(T specializationResponseModel) =
       SpecializationSuccess;
-  const factory HomeState.specializationFailure(error) = SpecializationFailure;
+  const factory HomeState.specializationFailure(ErrorHandler error) =
+      SpecializationFailure;
 }

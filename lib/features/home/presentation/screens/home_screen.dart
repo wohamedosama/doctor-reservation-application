@@ -1,8 +1,6 @@
 import 'package:doctor_reservation_app/core/helpers/spacing.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_blue_banner.dart';
-import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_specialist_section.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_speciality_and_see_all_section.dart';
-import 'package:doctor_reservation_app/features/home/presentation/widget/doctors_list_view.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/home_top_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +21,9 @@ class HomeScreen extends StatelessWidget {
             verticalSpace(24),
             const DoctorSpecialityAndSeeAllSection(),
             verticalSpace(20),
-            const DoctorSpecialistSection(),
+            // const DoctorSpecialistSection(),
             verticalSpace(12),
-            const DoctorsListView(),
+            // const DoctorsListView(),
           ],
         ),
       )),

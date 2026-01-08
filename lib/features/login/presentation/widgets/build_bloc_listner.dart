@@ -3,6 +3,7 @@ import 'package:doctor_reservation_app/core/helpers/flutter_toast.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
 import 'package:doctor_reservation_app/core/theme/app_color.dart';
 import 'package:doctor_reservation_app/core/theme/text_styles.dart';
+import 'package:doctor_reservation_app/core/widgets/custom_loading_indicator.dart';
 import 'package:doctor_reservation_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doctor_reservation_app/features/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,7 @@ class BuildBlocListner extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.whenOrNull(
-          loading: () {
-            showLoadingState(context);
-          },
+          loading: () => showLoadingDialog(context),
           success: (loginResponse) {
             context.pop();
             FlutterToast.showFlutterToast(

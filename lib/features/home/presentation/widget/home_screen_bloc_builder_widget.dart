@@ -1,4 +1,5 @@
 import 'package:doctor_reservation_app/core/helpers/spacing.dart';
+import 'package:doctor_reservation_app/core/widgets/custom_loading_indicator.dart';
 import 'package:doctor_reservation_app/features/home/data/model/specialization_response_model.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_state.dart';
@@ -19,7 +20,7 @@ class HomeScreenBlocBuilderWidget extends StatelessWidget {
           current is SpecializationFailure,
       builder: (context, state) {
         return state.maybeWhen(
-          specializationLoading: () => setupLoadingIndicator(),
+          specializationLoading: () => const CustomLoadingDialog(),
           specializationSuccess: (specializationResponseModel) =>
               setupSpecializationSuccess(specializationResponseModel),
           specializationFailure: () => setupError(),

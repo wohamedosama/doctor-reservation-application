@@ -32,7 +32,7 @@ class HomeTopBar extends StatelessWidget {
           radius: 24.r,
           backgroundColor: AppColor.grayColor20,
           child: SvgPicture.asset(
-            Assets.notification,
+            AppImages.notification,
             width: 28.w,
             height: 28.h,
           ),

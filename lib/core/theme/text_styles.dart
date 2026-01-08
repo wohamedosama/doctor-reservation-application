@@ -10,6 +10,11 @@ class TextStyles {
     color: AppColor.grayColor70,
     fontWeight: FontWeightHelper.regular,
   );
+  static TextStyle font12Gray100Regular = TextStyle(
+    fontSize: 12.sp,
+    color: AppColor.grayColor100,
+    fontWeight: FontWeightHelper.regular,
+  );
   static TextStyle font12GrayColor80 = TextStyle(
     fontSize: 12.sp,
     color: AppColor.grayColor80,
@@ -25,6 +30,11 @@ class TextStyles {
     color: AppColor.primaryColor100,
     fontWeight: FontWeightHelper.regular,
   );
+  static TextStyle font12PrimaryRegular = TextStyle(
+    fontSize: 12.sp,
+    color: AppColor.primaryColor100,
+    fontWeight: FontWeightHelper.regular,
+  );
   static TextStyle font13Gray60Regular = TextStyle(
     fontSize: 13.sp,
     color: AppColor.grayColor60,
@@ -32,6 +42,11 @@ class TextStyles {
   );
 
   // Medium
+  static TextStyle font18WhiteMeduim = TextStyle(
+    fontSize: 18.sp,
+    color: AppColor.whiteColor,
+    fontWeight: FontWeightHelper.medium,
+  );
   static TextStyle font12Gray100Medum = TextStyle(
     fontSize: 15.sp,
     color: AppColor.grayColor100,
@@ -94,6 +109,11 @@ class TextStyles {
   static TextStyle font13PrimarySemiBold = TextStyle(
     fontSize: 13.sp,
     color: AppColor.primaryColor100,
+    fontWeight: FontWeightHelper.semiBold,
+  );
+  static TextStyle font18GrayColor100SemiBold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColor.grayColor100,
     fontWeight: FontWeightHelper.semiBold,
   );
 }

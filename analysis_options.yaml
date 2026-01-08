@@ -30,5 +30,8 @@ linter:
     - prefer_const_declarations
     - prefer_const_literals_to_create_immutables
     - unnecessary_const
+analyzer:
+  errors:
+    unused_element: ignore
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

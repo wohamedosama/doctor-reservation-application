@@ -1,5 +1,6 @@
 import 'package:doctor_reservation_app/core/di/dependency_injection.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
+import 'package:doctor_reservation_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_reservation_app/features/home/presentation/screens/home_screen.dart';
 import 'package:doctor_reservation_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:doctor_reservation_app/features/login/presentation/screens/login_screen.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
-  Route onGenerateRoute(RouteSettings settings) {
+  Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
@@ -32,15 +33,14 @@ class AppRouter {
         );
       case Routes.homeScreen:
         return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => HomeCubit(getIt())..getSpecilazation(),
+            child: const HomeScreen(),
+          ),
         );
 
       default:
-        return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(child: Text('No route found ${settings.name}')),
-          ),
-        );
+        return null;
     }
   }
 }

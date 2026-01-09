@@ -24,6 +24,7 @@ void main() async {
 }
 
 checkIfLoggedInUser() async {
-  String? userToken = await SharedPrefHelper.getString(SharedPreKeys.userToken);
+  String? userToken =
+      await SharedPrefHelper.getSecuredString(SharedPreKeys.userToken);
   userToken.isNullOrEmpty() ? isLoggedInUser = false : isLoggedInUser = true;
 }

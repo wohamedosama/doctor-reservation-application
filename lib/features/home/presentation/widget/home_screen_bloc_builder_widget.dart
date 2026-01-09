@@ -41,6 +41,7 @@ class HomeScreenBlocBuilderWidget extends StatelessWidget {
           DoctorSpecialistSection(
               specializationsData: specializationsList ?? []),
           verticalSpace(12),
+          // TODO: I need to call another EP to call all doctors
           DoctorsListView(
             doctorsModel: specializationsList?[0]?.doctorsModel,
           ),

@@ -1,3 +1,4 @@
+import 'package:doctor_reservation_app/core/helpers/constant.dart';
 import 'package:doctor_reservation_app/core/routing/app_router.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
 import 'package:doctor_reservation_app/core/theme/app_color.dart';
@@ -20,7 +21,8 @@ class DocApp extends StatelessWidget {
           primaryColor: AppColor.primaryColor100,
           scaffoldBackgroundColor: AppColor.whiteColor,
         ),
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute:
+            isLoggedInUser ? Routes.homeScreen : Routes.onBoardingScreen,
         onGenerateRoute: appRouter.onGenerateRoute,
       ),
     );

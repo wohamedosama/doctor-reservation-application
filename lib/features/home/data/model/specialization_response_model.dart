@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'specialization_response_model.g.dart';
 
 @JsonSerializable()
@@ -16,14 +17,14 @@ class SpecializationsData {
   @JsonKey(name: 'name')
   String? specialityCatgory;
   @JsonKey(name: 'doctors')
-  List<DoctorsModel?>? doctorsModel;
+  List<Doctors?>? doctorsModel;
   SpecializationsData({this.id, this.specialityCatgory, this.doctorsModel});
   factory SpecializationsData.fromJson(Map<String, dynamic> json) =>
       _$SpecializationsDataFromJson(json);
 }
 
 @JsonSerializable()
-class DoctorsModel {
+class Doctors {
   int? id;
   String? name;
   String? email;
@@ -33,7 +34,7 @@ class DoctorsModel {
   String? degree;
   @JsonKey(name: 'appoint_price')
   int? price;
-  DoctorsModel({
+  Doctors({
     this.id,
     this.name,
     this.email,
@@ -44,6 +45,6 @@ class DoctorsModel {
     this.price,
   });
 
-  factory DoctorsModel.fromJson(Map<String, dynamic> json) =>
-      _$DoctorsModelFromJson(json);
+  factory Doctors.fromJson(Map<String, dynamic> json) =>
+      _$DoctorsFromJson(json);
 }

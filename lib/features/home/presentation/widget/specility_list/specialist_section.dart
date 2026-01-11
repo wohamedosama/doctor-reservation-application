@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:doctor_reservation_app/features/home/data/model/specialization_response_model.dart';
-import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_specialist_item.dart';
+import 'package:doctor_reservation_app/features/home/presentation/widget/specility_list/specialist_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DoctorSpecialistSection extends StatelessWidget {
+class SpecialistSection extends StatelessWidget {
   final List<SpecializationsData?> specializationsData;
-  const DoctorSpecialistSection({
+  const SpecialistSection({
     super.key,
     required this.specializationsData,
   });

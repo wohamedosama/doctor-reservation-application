@@ -1,8 +1,9 @@
 import 'package:doctor_reservation_app/core/helpers/spacing.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_blue_banner.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_speciality_and_see_all_section.dart';
-import 'package:doctor_reservation_app/features/home/presentation/widget/home_screen_bloc_builder_widget.dart';
+import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_list/doctors_bloc_builder.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/home_top_bar.dart';
+import 'package:doctor_reservation_app/features/home/presentation/widget/specility_list/specilization_bloc_builder.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,7 +23,9 @@ class HomeScreen extends StatelessWidget {
             verticalSpace(24),
             const DoctorSpecialityAndSeeAllSection(),
             verticalSpace(20),
-            const HomeScreenBlocBuilderWidget(),
+            const SpecilizationBlocBuilder(),
+            verticalSpace(12),
+            const DoctorsBlocBuilder(),
           ],
         ),
       )),

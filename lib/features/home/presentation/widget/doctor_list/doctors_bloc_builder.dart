@@ -1,4 +1,3 @@
-import 'package:doctor_reservation_app/core/widgets/custom_loading_indicator.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_state.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/doctor_list/doctors_list_view.dart';
@@ -12,12 +11,9 @@ class DoctorsBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
         buildWhen: (previous, current) =>
-            current is DoctorsLoading ||
-            current is DoctorsSuccess ||
-            current is DoctorsFailure,
+            current is DoctorsSuccess || current is DoctorsFailure,
         builder: (context, state) {
           return state.maybeWhen(
-            doctorsLoading: () => const CustomLoadingDialog(),
             doctorsSuccess: (docotrdModelList) {
               var doctorsList = docotrdModelList;
               return setupSpecializationSuccess(doctorsList);

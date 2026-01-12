@@ -1,5 +1,4 @@
 import 'package:doctor_reservation_app/core/networking/api_error_handler.dart';
-import 'package:doctor_reservation_app/features/home/data/model/doctors_response_model.dart';
 import 'package:doctor_reservation_app/features/home/data/model/specialization_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,14 +16,13 @@ class HomeState<T> with _$HomeState<T> {
       SpecializationFailure;
 
   // Doctors
-  const factory HomeState.doctorsLoading() = DoctorsLoading;
-  const factory HomeState.doctorsSuccess(
-      List<DocotrsModel?>? docotrdModelList) = DoctorsSuccess;
+  const factory HomeState.doctorsSuccess(List<Doctors?>? docotrdModelList) =
+      DoctorsSuccess;
   const factory HomeState.doctorsFailure(ErrorHandler error) = DoctorsFailure;
 
-  //Doctor By Id
-  const factory HomeState.getDoctorByIdSuccess(List<Doctors?>? docotrdList) =
-      GetDoctorByIdSuccess;
-  const factory HomeState.getDoctorByIdFailure(ErrorHandler error) =
-      GetDoctorByIdFailure;
+  // //Doctor By Id
+  // const factory HomeState.getDoctorByIdSuccess(List<Doctors?>? docotrdList) =
+  //     GetDoctorByIdSuccess;
+  // const factory HomeState.getDoctorByIdFailure(ErrorHandler error) =
+  //     GetDoctorByIdFailure;
 }

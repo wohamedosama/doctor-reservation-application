@@ -8,7 +8,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
   final Doctors? doctorsModel;
-  const DoctorsListViewItem({super.key, this.doctorsModel});
+  final String? imageName;
+  const DoctorsListViewItem({
+    super.key,
+    this.doctorsModel,
+    this.imageName,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,8 +29,7 @@ class DoctorsListViewItem extends StatelessWidget {
               child: Image.asset(
                 width: 110.w,
                 height: 120.h,
-                // TODO we need to check if the doctor's gender is male or female to toggle between them using an image
-                AppImages.doctorCarton,
+                imageName ?? AppImages.doctorCarton,
                 fit: BoxFit.cover,
               ),
             ),

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:doctor_reservation_app/core/helpers/doctor_images_list.dart';
 import 'package:doctor_reservation_app/features/home/data/model/specialization_response_model.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/specility_list/specialist_item.dart';
@@ -37,6 +38,7 @@ class _SpecialistSectionState extends State<SpecialistSection> {
                   specializationId: widget.specializationsData[index]?.id);
             },
             child: DoctorSpecialistItem(
+              specilityImage: DoctorImagesList.getSpecilityImageByIndex(index),
               specializationsData: widget.specializationsData[index],
               itemIndex: index,
               selectedItemIndex: selectedSpecilizationIndex,

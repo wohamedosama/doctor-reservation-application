@@ -1,6 +1,5 @@
 import 'package:doctor_reservation_app/core/helpers/spacing.dart';
 import 'package:doctor_reservation_app/core/theme/app_color.dart';
-import 'package:doctor_reservation_app/core/theme/app_images.dart';
 import 'package:doctor_reservation_app/core/theme/text_styles.dart';
 import 'package:doctor_reservation_app/features/home/data/model/specialization_response_model.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +12,10 @@ class DoctorSpecialistItem extends StatelessWidget {
     required this.itemIndex,
     this.specializationsData,
     required this.selectedItemIndex,
+    required this.specilityImage,
   });
   final int itemIndex;
+  final String specilityImage;
   final SpecializationsData? specializationsData;
   final int selectedItemIndex;
   @override
@@ -35,7 +36,7 @@ class DoctorSpecialistItem extends StatelessWidget {
                     radius: 28.r,
                     backgroundColor: AppColor.grayColor30,
                     child: SvgPicture.asset(
-                      AppImages.doctorIcon,
+                      specilityImage,
                       height: 42.h,
                       width: 42.w,
                     ),
@@ -45,7 +46,7 @@ class DoctorSpecialistItem extends StatelessWidget {
                   radius: 28.r,
                   backgroundColor: AppColor.grayColor30,
                   child: SvgPicture.asset(
-                    AppImages.doctorIcon,
+                    specilityImage,
                     height: 40.h,
                     width: 40.w,
                   ),

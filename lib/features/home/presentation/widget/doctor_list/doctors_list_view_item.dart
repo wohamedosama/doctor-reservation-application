@@ -30,7 +30,7 @@ class DoctorsListViewItem extends StatelessWidget {
                 width: 110.w,
                 height: 120.h,
                 imageName ?? AppImages.doctorCarton,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               ),
             ),
           ),

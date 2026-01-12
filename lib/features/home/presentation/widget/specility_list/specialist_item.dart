@@ -27,9 +27,8 @@ class DoctorSpecialistItem extends StatelessWidget {
           itemIndex == selectedItemIndex
               ? Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColor.grayColor80,
-                    ),
+                    border:
+                        Border.all(color: AppColor.grayColor100, width: 2.5),
                     shape: BoxShape.circle,
                   ),
                   child: CircleAvatar(

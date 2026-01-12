@@ -11,7 +11,6 @@ class DoctorImagesList {
     AppImages.doctorImage7,
   ];
   static const List<String> specilizationSvgs = [
-    AppImages.cardiologyIcon,
     AppImages.cardiologyyIcons,
     AppImages.gastroenterologyIcon,
     AppImages.hematologIcon,

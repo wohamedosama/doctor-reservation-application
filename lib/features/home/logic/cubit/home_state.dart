@@ -21,4 +21,10 @@ class HomeState<T> with _$HomeState<T> {
   const factory HomeState.doctorsSuccess(
       List<DocotrsModel?>? docotrdModelList) = DoctorsSuccess;
   const factory HomeState.doctorsFailure(ErrorHandler error) = DoctorsFailure;
+
+  //Doctor By Id
+  const factory HomeState.getDoctorByIdSuccess(List<Doctors?>? docotrdList) =
+      GetDoctorByIdSuccess;
+  const factory HomeState.getDoctorByIdFailure(ErrorHandler error) =
+      GetDoctorByIdFailure;
 }

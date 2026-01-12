@@ -42,7 +42,7 @@ class DocotrsModel {
     this.specialization,
   });
   factory DocotrsModel.fromJson(Map<String, dynamic> json) =>
-      _$DocotrdModelFromJson(json);
+      _$DocotrsModelFromJson(json);
 }
 
 @JsonSerializable()

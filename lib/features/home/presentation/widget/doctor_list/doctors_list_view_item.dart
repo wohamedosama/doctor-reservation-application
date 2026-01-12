@@ -24,6 +24,7 @@ class DoctorsListViewItem extends StatelessWidget {
               child: Image.asset(
                 width: 110.w,
                 height: 120.h,
+                // TODO we need to check if the doctor's gender is male or female to toggle between them using an image
                 AppImages.doctorCarton,
                 fit: BoxFit.cover,
               ),

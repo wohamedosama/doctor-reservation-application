@@ -57,6 +57,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult Function(DoctorsLoading<T> value)? doctorsLoading,
     TResult Function(DoctorsSuccess<T> value)? doctorsSuccess,
     TResult Function(DoctorsFailure<T> value)? doctorsFailure,
+    TResult Function(GetDoctorByIdSuccess<T> value)? getDoctorByIdSuccess,
+    TResult Function(GetDoctorByIdFailure<T> value)? getDoctorByIdFailure,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -75,6 +77,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return doctorsSuccess(_that);
       case DoctorsFailure() when doctorsFailure != null:
         return doctorsFailure(_that);
+      case GetDoctorByIdSuccess() when getDoctorByIdSuccess != null:
+        return getDoctorByIdSuccess(_that);
+      case GetDoctorByIdFailure() when getDoctorByIdFailure != null:
+        return getDoctorByIdFailure(_that);
       case _:
         return orElse();
     }
@@ -105,6 +111,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
     required TResult Function(DoctorsLoading<T> value) doctorsLoading,
     required TResult Function(DoctorsSuccess<T> value) doctorsSuccess,
     required TResult Function(DoctorsFailure<T> value) doctorsFailure,
+    required TResult Function(GetDoctorByIdSuccess<T> value)
+        getDoctorByIdSuccess,
+    required TResult Function(GetDoctorByIdFailure<T> value)
+        getDoctorByIdFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -122,6 +132,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return doctorsSuccess(_that);
       case DoctorsFailure():
         return doctorsFailure(_that);
+      case GetDoctorByIdSuccess():
+        return getDoctorByIdSuccess(_that);
+      case GetDoctorByIdFailure():
+        return getDoctorByIdFailure(_that);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -148,6 +162,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult? Function(DoctorsLoading<T> value)? doctorsLoading,
     TResult? Function(DoctorsSuccess<T> value)? doctorsSuccess,
     TResult? Function(DoctorsFailure<T> value)? doctorsFailure,
+    TResult? Function(GetDoctorByIdSuccess<T> value)? getDoctorByIdSuccess,
+    TResult? Function(GetDoctorByIdFailure<T> value)? getDoctorByIdFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -165,6 +181,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return doctorsSuccess(_that);
       case DoctorsFailure() when doctorsFailure != null:
         return doctorsFailure(_that);
+      case GetDoctorByIdSuccess() when getDoctorByIdSuccess != null:
+        return getDoctorByIdSuccess(_that);
+      case GetDoctorByIdFailure() when getDoctorByIdFailure != null:
+        return getDoctorByIdFailure(_that);
       case _:
         return null;
     }
@@ -192,6 +212,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult Function()? doctorsLoading,
     TResult Function(List<DocotrsModel?>? docotrdModelList)? doctorsSuccess,
     TResult Function(ErrorHandler error)? doctorsFailure,
+    TResult Function(List<Doctors?>? docotrdList)? getDoctorByIdSuccess,
+    TResult Function(ErrorHandler error)? getDoctorByIdFailure,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -210,6 +232,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return doctorsSuccess(_that.docotrdModelList);
       case DoctorsFailure() when doctorsFailure != null:
         return doctorsFailure(_that.error);
+      case GetDoctorByIdSuccess() when getDoctorByIdSuccess != null:
+        return getDoctorByIdSuccess(_that.docotrdList);
+      case GetDoctorByIdFailure() when getDoctorByIdFailure != null:
+        return getDoctorByIdFailure(_that.error);
       case _:
         return orElse();
     }
@@ -240,6 +266,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
     required TResult Function(List<DocotrsModel?>? docotrdModelList)
         doctorsSuccess,
     required TResult Function(ErrorHandler error) doctorsFailure,
+    required TResult Function(List<Doctors?>? docotrdList) getDoctorByIdSuccess,
+    required TResult Function(ErrorHandler error) getDoctorByIdFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -257,6 +285,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return doctorsSuccess(_that.docotrdModelList);
       case DoctorsFailure():
         return doctorsFailure(_that.error);
+      case GetDoctorByIdSuccess():
+        return getDoctorByIdSuccess(_that.docotrdList);
+      case GetDoctorByIdFailure():
+        return getDoctorByIdFailure(_that.error);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -284,6 +316,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult? Function()? doctorsLoading,
     TResult? Function(List<DocotrsModel?>? docotrdModelList)? doctorsSuccess,
     TResult? Function(ErrorHandler error)? doctorsFailure,
+    TResult? Function(List<Doctors?>? docotrdList)? getDoctorByIdSuccess,
+    TResult? Function(ErrorHandler error)? getDoctorByIdFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -301,6 +335,10 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return doctorsSuccess(_that.docotrdModelList);
       case DoctorsFailure() when doctorsFailure != null:
         return doctorsFailure(_that.error);
+      case GetDoctorByIdSuccess() when getDoctorByIdSuccess != null:
+        return getDoctorByIdSuccess(_that.docotrdList);
+      case GetDoctorByIdFailure() when getDoctorByIdFailure != null:
+        return getDoctorByIdFailure(_that.error);
       case _:
         return null;
     }
@@ -640,6 +678,146 @@ class _$DoctorsFailureCopyWithImpl<T, $Res>
     Object? error = null,
   }) {
     return _then(DoctorsFailure<T>(
+      null == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorHandler,
+    ));
+  }
+}
+
+/// @nodoc
+
+class GetDoctorByIdSuccess<T> implements HomeState<T> {
+  const GetDoctorByIdSuccess(final List<Doctors?>? docotrdList)
+      : _docotrdList = docotrdList;
+
+  final List<Doctors?>? _docotrdList;
+  List<Doctors?>? get docotrdList {
+    final value = _docotrdList;
+    if (value == null) return null;
+    if (_docotrdList is EqualUnmodifiableListView) return _docotrdList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $GetDoctorByIdSuccessCopyWith<T, GetDoctorByIdSuccess<T>> get copyWith =>
+      _$GetDoctorByIdSuccessCopyWithImpl<T, GetDoctorByIdSuccess<T>>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GetDoctorByIdSuccess<T> &&
+            const DeepCollectionEquality()
+                .equals(other._docotrdList, _docotrdList));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_docotrdList));
+
+  @override
+  String toString() {
+    return 'HomeState<$T>.getDoctorByIdSuccess(docotrdList: $docotrdList)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $GetDoctorByIdSuccessCopyWith<T, $Res>
+    implements $HomeStateCopyWith<T, $Res> {
+  factory $GetDoctorByIdSuccessCopyWith(GetDoctorByIdSuccess<T> value,
+          $Res Function(GetDoctorByIdSuccess<T>) _then) =
+      _$GetDoctorByIdSuccessCopyWithImpl;
+  @useResult
+  $Res call({List<Doctors?>? docotrdList});
+}
+
+/// @nodoc
+class _$GetDoctorByIdSuccessCopyWithImpl<T, $Res>
+    implements $GetDoctorByIdSuccessCopyWith<T, $Res> {
+  _$GetDoctorByIdSuccessCopyWithImpl(this._self, this._then);
+
+  final GetDoctorByIdSuccess<T> _self;
+  final $Res Function(GetDoctorByIdSuccess<T>) _then;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? docotrdList = freezed,
+  }) {
+    return _then(GetDoctorByIdSuccess<T>(
+      freezed == docotrdList
+          ? _self._docotrdList
+          : docotrdList // ignore: cast_nullable_to_non_nullable
+              as List<Doctors?>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class GetDoctorByIdFailure<T> implements HomeState<T> {
+  const GetDoctorByIdFailure(this.error);
+
+  final ErrorHandler error;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $GetDoctorByIdFailureCopyWith<T, GetDoctorByIdFailure<T>> get copyWith =>
+      _$GetDoctorByIdFailureCopyWithImpl<T, GetDoctorByIdFailure<T>>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GetDoctorByIdFailure<T> &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @override
+  String toString() {
+    return 'HomeState<$T>.getDoctorByIdFailure(error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $GetDoctorByIdFailureCopyWith<T, $Res>
+    implements $HomeStateCopyWith<T, $Res> {
+  factory $GetDoctorByIdFailureCopyWith(GetDoctorByIdFailure<T> value,
+          $Res Function(GetDoctorByIdFailure<T>) _then) =
+      _$GetDoctorByIdFailureCopyWithImpl;
+  @useResult
+  $Res call({ErrorHandler error});
+}
+
+/// @nodoc
+class _$GetDoctorByIdFailureCopyWithImpl<T, $Res>
+    implements $GetDoctorByIdFailureCopyWith<T, $Res> {
+  _$GetDoctorByIdFailureCopyWithImpl(this._self, this._then);
+
+  final GetDoctorByIdFailure<T> _self;
+  final $Res Function(GetDoctorByIdFailure<T>) _then;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(GetDoctorByIdFailure<T>(
       null == error
           ? _self.error
           : error // ignore: cast_nullable_to_non_nullable

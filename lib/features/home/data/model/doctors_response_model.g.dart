@@ -22,7 +22,7 @@ Map<String, dynamic> _$DoctorsResponseModelToJson(
       'data': instance.docotrsModel,
     };
 
-DocotrsModel _$DocotrdModelFromJson(Map<String, dynamic> json) => DocotrsModel(
+DocotrsModel _$DocotrsModelFromJson(Map<String, dynamic> json) => DocotrsModel(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       email: json['email'] as String?,
@@ -39,7 +39,7 @@ DocotrsModel _$DocotrdModelFromJson(Map<String, dynamic> json) => DocotrsModel(
               json['specialization'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$DocotrdModelToJson(DocotrsModel instance) =>
+Map<String, dynamic> _$DocotrsModelToJson(DocotrsModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

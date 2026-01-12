@@ -8,25 +8,54 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DoctorSpecialistItem extends StatelessWidget {
-  const DoctorSpecialistItem(
-      {super.key, required this.itemIndex, this.specializationsData});
+  const DoctorSpecialistItem({
+    super.key,
+    required this.itemIndex,
+    this.specializationsData,
+    required this.selectedItemIndex,
+  });
   final int itemIndex;
   final SpecializationsData? specializationsData;
+  final int selectedItemIndex;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 24.w),
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 28.r,
-            backgroundColor: AppColor.grayColor30,
-            child: SvgPicture.asset(AppImages.doctorIcon),
-          ),
+          itemIndex == selectedItemIndex
+              ? Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColor.grayColor80,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: CircleAvatar(
+                    radius: 28.r,
+                    backgroundColor: AppColor.grayColor30,
+                    child: SvgPicture.asset(
+                      AppImages.doctorIcon,
+                      height: 42.h,
+                      width: 42.w,
+                    ),
+                  ),
+                )
+              : CircleAvatar(
+                  radius: 28.r,
+                  backgroundColor: AppColor.grayColor30,
+                  child: SvgPicture.asset(
+                    AppImages.doctorIcon,
+                    height: 40.h,
+                    width: 40.w,
+                  ),
+                ),
           verticalSpace(8),
           Text(
             specializationsData?.specialityCatgory ?? 'Genral',
-            style: TextStyles.font12Gray100Regular,
+            style: itemIndex == selectedItemIndex
+                ? TextStyles.font14Gray100Bold
+                : TextStyles.font12Gray100Regular,
           ),
         ],
       ),

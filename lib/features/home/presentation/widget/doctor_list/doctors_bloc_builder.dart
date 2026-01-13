@@ -11,12 +11,15 @@ class DoctorsBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
         buildWhen: (previous, current) =>
-            current is DoctorsSuccess || current is DoctorsFailure,
+            current is DoctorsLoading ||
+            current is DoctorsSuccess ||
+            current is DoctorsFailure,
         builder: (context, state) {
           return state.maybeWhen(
+            doctorsLoading: () => const DoctorsListView(isLoading: true),
             doctorsSuccess: (docotrdModelList) {
               var doctorsList = docotrdModelList;
-              return setupSpecializationSuccess(doctorsList);
+              return setupSpecializationSuccess(doctorsList, false);
             },
             doctorsFailure: (error) => setupError(),
             orElse: () {
@@ -27,8 +30,11 @@ class DoctorsBlocBuilder extends StatelessWidget {
   }
 }
 
-Widget setupSpecializationSuccess(doctorsList) {
-  return DoctorsListView(doctorsModel: doctorsList ?? []);
+Widget setupSpecializationSuccess(doctorsList, isLoading) {
+  return DoctorsListView(
+    doctorsModel: doctorsList,
+    isLoading: isLoading,
+  );
 }
 
 Widget setupError() {

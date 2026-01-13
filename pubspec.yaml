@@ -71,6 +71,8 @@ dependencies:
   shared_preferences: ^2.5.4
   #A Flutter plugin for securely storing sensitive data using encrypted storage.
   flutter_secure_storage: ^10.0.0
+  #Converts already built widgets into skeleton loaders with no extra effort.
+  skeletonizer: ^2.1.2
 
 dev_dependencies:
   flutter_test:

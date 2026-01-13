@@ -29,21 +29,10 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  // void getAllDoctors() async {
-  //   emit(const HomeState.doctorsLoading());
-  //   final response = await _homeRepo.getAllDocotor();
+  void getDoctorList({required int? specializationId}) async {
+    emit(const HomeState.doctorsLoading());
+    await Future.delayed(const Duration(milliseconds: 800));
 
-  //   response.when(
-  //     success: (doctorsResponseModel) {
-  //       emit(HomeState.doctorsSuccess(doctorsResponseModel.docotrsModel));
-  //     },
-  //     failure: (error) {
-  //       emit(HomeState.doctorsFailure(error));
-  //     },
-  //   );
-  // }
-
-  void getDoctorList({required int? specializationId}) {
     List<Doctors?>? doctorsList =
         getDoctorsListBySpecializationId(specializationId);
     if (!doctorsList.isNullOrEmpty()) {

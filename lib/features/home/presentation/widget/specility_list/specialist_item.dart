@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class DoctorSpecialistItem extends StatelessWidget {
-  const DoctorSpecialistItem({
+class SpecialistItem extends StatelessWidget {
+  const SpecialistItem({
     super.key,
     required this.itemIndex,
     this.specializationsData,
@@ -18,6 +18,7 @@ class DoctorSpecialistItem extends StatelessWidget {
   final String specilityImage;
   final SpecializationsData? specializationsData;
   final int selectedItemIndex;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,31 +35,39 @@ class DoctorSpecialistItem extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 28.r,
                     backgroundColor: AppColor.grayColor30,
-                    child: SvgPicture.asset(
-                      specilityImage,
-                      height: 42.h,
-                      width: 42.w,
-                    ),
+                    child: _buildImage(42.h, 42.w),
                   ),
                 )
               : CircleAvatar(
                   radius: 28.r,
                   backgroundColor: AppColor.grayColor30,
-                  child: SvgPicture.asset(
-                    specilityImage,
-                    height: 40.h,
-                    width: 40.w,
-                  ),
+                  child: _buildImage(40.h, 40.w),
                 ),
           verticalSpace(8),
           Text(
-            specializationsData?.specialityCatgory ?? 'Genral',
+            specializationsData?.specialityCatgory ?? 'General',
             style: itemIndex == selectedItemIndex
                 ? TextStyles.font14Gray100Bold
                 : TextStyles.font12Gray100Regular,
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildImage(double height, double width) {
+    if (specilityImage.isEmpty) {
+      return Icon(
+        Icons.medical_services_outlined,
+        size: height * 0.7,
+        color: AppColor.grayColor100,
+      );
+    }
+
+    return SvgPicture.asset(
+      specilityImage,
+      height: height,
+      width: width,
     );
   }
 }

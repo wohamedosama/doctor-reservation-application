@@ -16,13 +16,8 @@ class HomeState<T> with _$HomeState<T> {
       SpecializationFailure;
 
   // Doctors
+  const factory HomeState.doctorsLoading() = DoctorsLoading;
   const factory HomeState.doctorsSuccess(List<Doctors?>? docotrdModelList) =
       DoctorsSuccess;
   const factory HomeState.doctorsFailure(ErrorHandler error) = DoctorsFailure;
-
-  // //Doctor By Id
-  // const factory HomeState.getDoctorByIdSuccess(List<Doctors?>? docotrdList) =
-  //     GetDoctorByIdSuccess;
-  // const factory HomeState.getDoctorByIdFailure(ErrorHandler error) =
-  //     GetDoctorByIdFailure;
 }

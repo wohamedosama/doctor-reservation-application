@@ -1,4 +1,3 @@
-import 'package:doctor_reservation_app/core/widgets/custom_loading_indicator.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_state.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/specility_list/specialist_section.dart';
@@ -17,7 +16,7 @@ class SpecilizationBlocBuilder extends StatelessWidget {
           current is SpecializationFailure,
       builder: (context, state) {
         return state.maybeWhen(
-          specializationLoading: () => const CustomLoadingDialog(),
+          specializationLoading: () => const SpecialistSection(isLoading: true),
           specializationSuccess: (specializationDataList) {
             var specializationsList = specializationDataList;
             return setupSpecializationSuccess(specializationsList);
@@ -32,7 +31,9 @@ class SpecilizationBlocBuilder extends StatelessWidget {
   }
 
   Widget setupSpecializationSuccess(specializationsList) {
-    return SpecialistSection(specializationsData: specializationsList);
+    return SpecialistSection(
+      specializationsData: specializationsList,
+    );
   }
 }
 

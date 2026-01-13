@@ -54,6 +54,7 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult Function(SpecializationLoading<T> value)? specializationLoading,
     TResult Function(SpecializationSuccess<T> value)? specializationSuccess,
     TResult Function(SpecializationFailure<T> value)? specializationFailure,
+    TResult Function(DoctorsLoading<T> value)? doctorsLoading,
     TResult Function(DoctorsSuccess<T> value)? doctorsSuccess,
     TResult Function(DoctorsFailure<T> value)? doctorsFailure,
     required TResult orElse(),
@@ -68,6 +69,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that);
       case SpecializationFailure() when specializationFailure != null:
         return specializationFailure(_that);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading(_that);
       case DoctorsSuccess() when doctorsSuccess != null:
         return doctorsSuccess(_that);
       case DoctorsFailure() when doctorsFailure != null:
@@ -99,6 +102,7 @@ extension HomeStatePatterns<T> on HomeState<T> {
         specializationSuccess,
     required TResult Function(SpecializationFailure<T> value)
         specializationFailure,
+    required TResult Function(DoctorsLoading<T> value) doctorsLoading,
     required TResult Function(DoctorsSuccess<T> value) doctorsSuccess,
     required TResult Function(DoctorsFailure<T> value) doctorsFailure,
   }) {
@@ -112,6 +116,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that);
       case SpecializationFailure():
         return specializationFailure(_that);
+      case DoctorsLoading():
+        return doctorsLoading(_that);
       case DoctorsSuccess():
         return doctorsSuccess(_that);
       case DoctorsFailure():
@@ -139,6 +145,7 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult? Function(SpecializationLoading<T> value)? specializationLoading,
     TResult? Function(SpecializationSuccess<T> value)? specializationSuccess,
     TResult? Function(SpecializationFailure<T> value)? specializationFailure,
+    TResult? Function(DoctorsLoading<T> value)? doctorsLoading,
     TResult? Function(DoctorsSuccess<T> value)? doctorsSuccess,
     TResult? Function(DoctorsFailure<T> value)? doctorsFailure,
   }) {
@@ -152,6 +159,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that);
       case SpecializationFailure() when specializationFailure != null:
         return specializationFailure(_that);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading(_that);
       case DoctorsSuccess() when doctorsSuccess != null:
         return doctorsSuccess(_that);
       case DoctorsFailure() when doctorsFailure != null:
@@ -180,6 +189,7 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult Function(List<SpecializationsData?>? specializationDataList)?
         specializationSuccess,
     TResult Function(ErrorHandler error)? specializationFailure,
+    TResult Function()? doctorsLoading,
     TResult Function(List<Doctors?>? docotrdModelList)? doctorsSuccess,
     TResult Function(ErrorHandler error)? doctorsFailure,
     required TResult orElse(),
@@ -194,6 +204,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that.specializationDataList);
       case SpecializationFailure() when specializationFailure != null:
         return specializationFailure(_that.error);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading();
       case DoctorsSuccess() when doctorsSuccess != null:
         return doctorsSuccess(_that.docotrdModelList);
       case DoctorsFailure() when doctorsFailure != null:
@@ -224,6 +236,7 @@ extension HomeStatePatterns<T> on HomeState<T> {
             List<SpecializationsData?>? specializationDataList)
         specializationSuccess,
     required TResult Function(ErrorHandler error) specializationFailure,
+    required TResult Function() doctorsLoading,
     required TResult Function(List<Doctors?>? docotrdModelList) doctorsSuccess,
     required TResult Function(ErrorHandler error) doctorsFailure,
   }) {
@@ -237,6 +250,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that.specializationDataList);
       case SpecializationFailure():
         return specializationFailure(_that.error);
+      case DoctorsLoading():
+        return doctorsLoading();
       case DoctorsSuccess():
         return doctorsSuccess(_that.docotrdModelList);
       case DoctorsFailure():
@@ -265,6 +280,7 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult? Function(List<SpecializationsData?>? specializationDataList)?
         specializationSuccess,
     TResult? Function(ErrorHandler error)? specializationFailure,
+    TResult? Function()? doctorsLoading,
     TResult? Function(List<Doctors?>? docotrdModelList)? doctorsSuccess,
     TResult? Function(ErrorHandler error)? doctorsFailure,
   }) {
@@ -278,6 +294,8 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that.specializationDataList);
       case SpecializationFailure() when specializationFailure != null:
         return specializationFailure(_that.error);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading();
       case DoctorsSuccess() when doctorsSuccess != null:
         return doctorsSuccess(_that.docotrdModelList);
       case DoctorsFailure() when doctorsFailure != null:
@@ -467,6 +485,26 @@ class _$SpecializationFailureCopyWithImpl<T, $Res>
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorHandler,
     ));
+  }
+}
+
+/// @nodoc
+
+class DoctorsLoading<T> implements HomeState<T> {
+  const DoctorsLoading();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DoctorsLoading<T>);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'HomeState<$T>.doctorsLoading()';
   }
 }
 

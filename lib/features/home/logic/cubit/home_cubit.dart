@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:doctor_reservation_app/core/helpers/extension.dart';
-import 'package:doctor_reservation_app/core/networking/api_error_handler.dart';
 import 'package:doctor_reservation_app/core/networking/api_reuslt.dart';
 import 'package:doctor_reservation_app/features/home/data/model/specialization_response_model.dart';
 import 'package:doctor_reservation_app/features/home/data/repo/home_repo.dart';
@@ -23,8 +22,8 @@ class HomeCubit extends Cubit<HomeState> {
         emit(HomeState.specializationSuccess(
             specializationResponseModel.specializationsData));
       },
-      failure: (error) {
-        emit(HomeState.specializationFailure(error));
+      failure: (apiErrorModel) {
+        emit(HomeState.specializationFailure(apiErrorModel));
       },
     );
   }
@@ -38,7 +37,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (!doctorsList.isNullOrEmpty()) {
       emit(HomeState.doctorsSuccess(doctorsList));
     } else {
-      emit(HomeState.doctorsFailure(ErrorHandler.handle('No Doctor Found')));
+      emit(const HomeState.doctorsFailure());
     }
   }
 

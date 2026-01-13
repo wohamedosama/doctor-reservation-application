@@ -16,9 +16,9 @@ class SignupCubit extends Cubit<SignupState> {
   final TextEditingController passwordConfirmationController =
       TextEditingController();
 
-  SignupCubit(this._signupRepo) : super(const SignupState.initial());
+  SignupCubit(this._signupRepo) : super(const SignupState.signupInitial());
   void emitSignupState() async {
-    emit(const SignupState.loading());
+    emit(const SignupState.signupLoading());
     final response = await _signupRepo.signup(
       SignupRequestBody(
         name: nameController.text,
@@ -30,8 +30,9 @@ class SignupCubit extends Cubit<SignupState> {
       ),
     );
     response.when(
-        success: (loginResponse) => emit(SignupState.success(loginResponse)),
-        failure: (error) =>
-            emit(SignupState.failure(error.apiErrorModel.message ?? '')));
+        success: (loginResponse) =>
+            emit(SignupState.signupSuccess(loginResponse)),
+        failure: (apiErrorModel) =>
+            emit(SignupState.signupFailure(apiErrorModel)));
   }
 }

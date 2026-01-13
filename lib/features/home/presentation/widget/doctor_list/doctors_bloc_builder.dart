@@ -21,7 +21,7 @@ class DoctorsBlocBuilder extends StatelessWidget {
               var doctorsList = docotrdModelList;
               return setupSpecializationSuccess(doctorsList, false);
             },
-            doctorsFailure: (error) => setupError(),
+            doctorsFailure: () => setupError(),
             orElse: () {
               return const SizedBox.shrink();
             },

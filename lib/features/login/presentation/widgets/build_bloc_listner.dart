@@ -1,5 +1,6 @@
 import 'package:doctor_reservation_app/core/helpers/extension.dart';
 import 'package:doctor_reservation_app/core/helpers/flutter_toast.dart';
+import 'package:doctor_reservation_app/core/networking/api_error_model.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
 import 'package:doctor_reservation_app/core/theme/app_color.dart';
 import 'package:doctor_reservation_app/core/theme/text_styles.dart';
@@ -17,8 +18,8 @@ class BuildBlocListner extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.whenOrNull(
-          loading: () => showLoadingDialog(context),
-          success: (loginResponse) {
+          loginLoading: () => showLoadingDialog(context),
+          loginSuccess: (loginResponse) {
             context.pop();
             FlutterToast.showFlutterToast(
               message: 'Login Sucessfully',
@@ -27,14 +28,13 @@ class BuildBlocListner extends StatelessWidget {
             );
             context.pushNamed(Routes.homeScreen);
           },
-          failure: (error) {
+          loginFailure: (error) {
             context.pop();
             FlutterToast.showFlutterToast(
-                message: error.toString(),
-                state: ToastStates.error,
-                context: context);
-
-            //showErrorState(context, error);
+              state: ToastStates.error,
+              context: context,
+              message: error,
+            );
           },
         );
       },
@@ -55,7 +55,7 @@ class BuildBlocListner extends StatelessWidget {
     );
   }
 
-  void showErrorState(BuildContext context, String error) {
+  void showErrorState(BuildContext context, ApiErrorModel apiErrorModel) {
     context.pop();
     showDialog(
       context: context,
@@ -67,7 +67,7 @@ class BuildBlocListner extends StatelessWidget {
             size: 32,
           ),
           content: Text(
-            error,
+            apiErrorModel.getAllErrorMessages(),
             style: TextStyles.font12Gray100Medum,
           ),
           actions: [

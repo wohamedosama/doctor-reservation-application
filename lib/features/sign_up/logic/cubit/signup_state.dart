@@ -1,11 +1,13 @@
+import 'package:doctor_reservation_app/core/networking/api_error_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'signup_state.freezed.dart';
 
 @freezed
 class SignupState<T> with _$SignupState<T> {
-  const factory SignupState.initial() = _Initial;
-  const factory SignupState.loading() = Loading;
-  const factory SignupState.success(T date) = Success;
-  const factory SignupState.failure(String message) = Failure;
+  const factory SignupState.signupInitial() = _SignupInitial;
+  const factory SignupState.signupLoading() = SignupLoading;
+  const factory SignupState.signupSuccess(T date) = SignupSuccess;
+  const factory SignupState.signupFailure(ApiErrorModel apiErrorModel) =
+      SignupFailure;
 }

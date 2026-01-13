@@ -1,5 +1,6 @@
 import 'package:doctor_reservation_app/core/helpers/extension.dart';
 import 'package:doctor_reservation_app/core/helpers/flutter_toast.dart';
+import 'package:doctor_reservation_app/core/networking/api_error_model.dart';
 import 'package:doctor_reservation_app/core/routing/routes.dart';
 import 'package:doctor_reservation_app/core/theme/app_color.dart';
 import 'package:doctor_reservation_app/core/theme/text_styles.dart';
@@ -17,22 +18,22 @@ class SignupBlocLisnter extends StatelessWidget {
     return BlocListener<SignupCubit, SignupState>(
       listener: (context, state) {
         state.whenOrNull(
-          loading: () => showLoadingDialog(context),
-          success: (date) => {
+          signupLoading: () => showLoadingDialog(context),
+          signupSuccess: (date) => {
             context.pop(),
             FlutterToast.showFlutterToast(
-              message: 'Signup Successfully',
+              message: date,
               state: ToastStates.success,
               context: context,
             ),
             context.pushNamed(Routes.loginScreen),
           },
-          failure: (error) => {
+          signupFailure: (error) => {
             context.pop(),
             FlutterToast.showFlutterToast(
-              message: error,
               state: ToastStates.error,
               context: context,
+              message: error,
             ),
           },
         );
@@ -54,7 +55,7 @@ class SignupBlocLisnter extends StatelessWidget {
     );
   }
 
-  void showErrorState(BuildContext context, String error) {
+  void showErrorState(BuildContext context, ApiErrorModel apiErrorModel) {
     context.pop();
     showDialog(
       context: context,
@@ -66,7 +67,7 @@ class SignupBlocLisnter extends StatelessWidget {
             size: 32,
           ),
           content: Text(
-            error,
+            apiErrorModel.getAllErrorMessages(),
             style: TextStyles.font12Gray100Medum,
           ),
           actions: [

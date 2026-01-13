@@ -94,6 +94,11 @@ class TextStyles {
     color: AppColor.grayColor100,
     fontWeight: FontWeightHelper.bold,
   );
+  static TextStyle font14Gray100Bold = TextStyle(
+    fontSize: 14.sp,
+    color: AppColor.grayColor100,
+    fontWeight: FontWeightHelper.bold,
+  );
 
   // Semi Bold
   static TextStyle font18WhiteSemiBold = TextStyle(

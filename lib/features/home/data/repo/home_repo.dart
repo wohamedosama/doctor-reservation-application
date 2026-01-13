@@ -7,6 +7,7 @@ class HomeRepo {
   final HomeApiService _homeApiService;
   HomeRepo(this._homeApiService);
 
+  /// Return all specialization list
   Future<ApiReuslt<SpecializationResponseModel>> getSpecilazation() async {
     try {
       final response = await _homeApiService.getSpecilazation();
@@ -15,4 +16,14 @@ class HomeRepo {
       return ApiReuslt.failure(ErrorHandler.handle(error));
     }
   }
+
+  // /// Return all doctors list
+  // Future<ApiReuslt<DoctorsResponseModel>> getAllDocotor() async {
+  //   try {
+  //     final response = await _homeApiService.getAllDocotor();
+  //     return ApiReuslt.success(response);
+  //   } catch (error) {
+  //     return ApiReuslt.failure(ErrorHandler.handle(error));
+  //   }
+  // }
 }

@@ -9,7 +9,11 @@ part 'home_api_service.g.dart';
 @RestApi(baseUrl: ApiConstant.apiBaseUrl)
 abstract class HomeApiService {
   factory HomeApiService(Dio dio, {String baseUrl}) = _HomeApiService;
-
+  // Return Small List including the doctors and speciality
   @GET(HomeApiConstant.specializationEndPoint)
   Future<SpecializationResponseModel> getSpecilazation();
+
+  // // Return all doctors list
+  // @GET(HomeApiConstant.allDoctorsEndPoint)
+  // Future<DoctorsResponseModel> getAllDocotor();
 }

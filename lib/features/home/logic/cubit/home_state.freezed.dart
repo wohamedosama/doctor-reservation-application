@@ -54,6 +54,9 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult Function(SpecializationLoading<T> value)? specializationLoading,
     TResult Function(SpecializationSuccess<T> value)? specializationSuccess,
     TResult Function(SpecializationFailure<T> value)? specializationFailure,
+    TResult Function(DoctorsLoading<T> value)? doctorsLoading,
+    TResult Function(DoctorsSuccess<T> value)? doctorsSuccess,
+    TResult Function(DoctorsFailure<T> value)? doctorsFailure,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -66,6 +69,12 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that);
       case SpecializationFailure() when specializationFailure != null:
         return specializationFailure(_that);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading(_that);
+      case DoctorsSuccess() when doctorsSuccess != null:
+        return doctorsSuccess(_that);
+      case DoctorsFailure() when doctorsFailure != null:
+        return doctorsFailure(_that);
       case _:
         return orElse();
     }
@@ -93,6 +102,9 @@ extension HomeStatePatterns<T> on HomeState<T> {
         specializationSuccess,
     required TResult Function(SpecializationFailure<T> value)
         specializationFailure,
+    required TResult Function(DoctorsLoading<T> value) doctorsLoading,
+    required TResult Function(DoctorsSuccess<T> value) doctorsSuccess,
+    required TResult Function(DoctorsFailure<T> value) doctorsFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -104,6 +116,12 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that);
       case SpecializationFailure():
         return specializationFailure(_that);
+      case DoctorsLoading():
+        return doctorsLoading(_that);
+      case DoctorsSuccess():
+        return doctorsSuccess(_that);
+      case DoctorsFailure():
+        return doctorsFailure(_that);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -127,6 +145,9 @@ extension HomeStatePatterns<T> on HomeState<T> {
     TResult? Function(SpecializationLoading<T> value)? specializationLoading,
     TResult? Function(SpecializationSuccess<T> value)? specializationSuccess,
     TResult? Function(SpecializationFailure<T> value)? specializationFailure,
+    TResult? Function(DoctorsLoading<T> value)? doctorsLoading,
+    TResult? Function(DoctorsSuccess<T> value)? doctorsSuccess,
+    TResult? Function(DoctorsFailure<T> value)? doctorsFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -138,6 +159,12 @@ extension HomeStatePatterns<T> on HomeState<T> {
         return specializationSuccess(_that);
       case SpecializationFailure() when specializationFailure != null:
         return specializationFailure(_that);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading(_that);
+      case DoctorsSuccess() when doctorsSuccess != null:
+        return doctorsSuccess(_that);
+      case DoctorsFailure() when doctorsFailure != null:
+        return doctorsFailure(_that);
       case _:
         return null;
     }
@@ -159,8 +186,12 @@ extension HomeStatePatterns<T> on HomeState<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? specializationLoading,
-    TResult Function(T specializationResponseModel)? specializationSuccess,
-    TResult Function()? specializationFailure,
+    TResult Function(List<SpecializationsData?>? specializationDataList)?
+        specializationSuccess,
+    TResult Function(ErrorHandler error)? specializationFailure,
+    TResult Function()? doctorsLoading,
+    TResult Function(List<Doctors?>? docotrdModelList)? doctorsSuccess,
+    TResult Function(ErrorHandler error)? doctorsFailure,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -170,9 +201,15 @@ extension HomeStatePatterns<T> on HomeState<T> {
       case SpecializationLoading() when specializationLoading != null:
         return specializationLoading();
       case SpecializationSuccess() when specializationSuccess != null:
-        return specializationSuccess(_that.specializationResponseModel);
+        return specializationSuccess(_that.specializationDataList);
       case SpecializationFailure() when specializationFailure != null:
-        return specializationFailure();
+        return specializationFailure(_that.error);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading();
+      case DoctorsSuccess() when doctorsSuccess != null:
+        return doctorsSuccess(_that.docotrdModelList);
+      case DoctorsFailure() when doctorsFailure != null:
+        return doctorsFailure(_that.error);
       case _:
         return orElse();
     }
@@ -195,9 +232,13 @@ extension HomeStatePatterns<T> on HomeState<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() specializationLoading,
-    required TResult Function(T specializationResponseModel)
+    required TResult Function(
+            List<SpecializationsData?>? specializationDataList)
         specializationSuccess,
-    required TResult Function() specializationFailure,
+    required TResult Function(ErrorHandler error) specializationFailure,
+    required TResult Function() doctorsLoading,
+    required TResult Function(List<Doctors?>? docotrdModelList) doctorsSuccess,
+    required TResult Function(ErrorHandler error) doctorsFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -206,9 +247,15 @@ extension HomeStatePatterns<T> on HomeState<T> {
       case SpecializationLoading():
         return specializationLoading();
       case SpecializationSuccess():
-        return specializationSuccess(_that.specializationResponseModel);
+        return specializationSuccess(_that.specializationDataList);
       case SpecializationFailure():
-        return specializationFailure();
+        return specializationFailure(_that.error);
+      case DoctorsLoading():
+        return doctorsLoading();
+      case DoctorsSuccess():
+        return doctorsSuccess(_that.docotrdModelList);
+      case DoctorsFailure():
+        return doctorsFailure(_that.error);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -230,8 +277,12 @@ extension HomeStatePatterns<T> on HomeState<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? specializationLoading,
-    TResult? Function(T specializationResponseModel)? specializationSuccess,
-    TResult? Function()? specializationFailure,
+    TResult? Function(List<SpecializationsData?>? specializationDataList)?
+        specializationSuccess,
+    TResult? Function(ErrorHandler error)? specializationFailure,
+    TResult? Function()? doctorsLoading,
+    TResult? Function(List<Doctors?>? docotrdModelList)? doctorsSuccess,
+    TResult? Function(ErrorHandler error)? doctorsFailure,
   }) {
     final _that = this;
     switch (_that) {
@@ -240,9 +291,15 @@ extension HomeStatePatterns<T> on HomeState<T> {
       case SpecializationLoading() when specializationLoading != null:
         return specializationLoading();
       case SpecializationSuccess() when specializationSuccess != null:
-        return specializationSuccess(_that.specializationResponseModel);
+        return specializationSuccess(_that.specializationDataList);
       case SpecializationFailure() when specializationFailure != null:
-        return specializationFailure();
+        return specializationFailure(_that.error);
+      case DoctorsLoading() when doctorsLoading != null:
+        return doctorsLoading();
+      case DoctorsSuccess() when doctorsSuccess != null:
+        return doctorsSuccess(_that.docotrdModelList);
+      case DoctorsFailure() when doctorsFailure != null:
+        return doctorsFailure(_that.error);
       case _:
         return null;
     }
@@ -292,9 +349,19 @@ class SpecializationLoading<T> implements HomeState<T> {
 /// @nodoc
 
 class SpecializationSuccess<T> implements HomeState<T> {
-  const SpecializationSuccess(this.specializationResponseModel);
+  const SpecializationSuccess(
+      final List<SpecializationsData?>? specializationDataList)
+      : _specializationDataList = specializationDataList;
 
-  final T specializationResponseModel;
+  final List<SpecializationsData?>? _specializationDataList;
+  List<SpecializationsData?>? get specializationDataList {
+    final value = _specializationDataList;
+    if (value == null) return null;
+    if (_specializationDataList is EqualUnmodifiableListView)
+      return _specializationDataList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -310,17 +377,16 @@ class SpecializationSuccess<T> implements HomeState<T> {
         (other.runtimeType == runtimeType &&
             other is SpecializationSuccess<T> &&
             const DeepCollectionEquality().equals(
-                other.specializationResponseModel,
-                specializationResponseModel));
+                other._specializationDataList, _specializationDataList));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(specializationResponseModel));
+      const DeepCollectionEquality().hash(_specializationDataList));
 
   @override
   String toString() {
-    return 'HomeState<$T>.specializationSuccess(specializationResponseModel: $specializationResponseModel)';
+    return 'HomeState<$T>.specializationSuccess(specializationDataList: $specializationDataList)';
   }
 }
 
@@ -331,7 +397,7 @@ abstract mixin class $SpecializationSuccessCopyWith<T, $Res>
           $Res Function(SpecializationSuccess<T>) _then) =
       _$SpecializationSuccessCopyWithImpl;
   @useResult
-  $Res call({T specializationResponseModel});
+  $Res call({List<SpecializationsData?>? specializationDataList});
 }
 
 /// @nodoc
@@ -346,13 +412,13 @@ class _$SpecializationSuccessCopyWithImpl<T, $Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? specializationResponseModel = freezed,
+    Object? specializationDataList = freezed,
   }) {
     return _then(SpecializationSuccess<T>(
-      freezed == specializationResponseModel
-          ? _self.specializationResponseModel
-          : specializationResponseModel // ignore: cast_nullable_to_non_nullable
-              as T,
+      freezed == specializationDataList
+          ? _self._specializationDataList
+          : specializationDataList // ignore: cast_nullable_to_non_nullable
+              as List<SpecializationsData?>?,
     ));
   }
 }
@@ -360,12 +426,77 @@ class _$SpecializationSuccessCopyWithImpl<T, $Res>
 /// @nodoc
 
 class SpecializationFailure<T> implements HomeState<T> {
-  const SpecializationFailure(errorHandle);
+  const SpecializationFailure(this.error);
+
+  final ErrorHandler error;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SpecializationFailureCopyWith<T, SpecializationFailure<T>> get copyWith =>
+      _$SpecializationFailureCopyWithImpl<T, SpecializationFailure<T>>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is SpecializationFailure<T>);
+        (other.runtimeType == runtimeType &&
+            other is SpecializationFailure<T> &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @override
+  String toString() {
+    return 'HomeState<$T>.specializationFailure(error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SpecializationFailureCopyWith<T, $Res>
+    implements $HomeStateCopyWith<T, $Res> {
+  factory $SpecializationFailureCopyWith(SpecializationFailure<T> value,
+          $Res Function(SpecializationFailure<T>) _then) =
+      _$SpecializationFailureCopyWithImpl;
+  @useResult
+  $Res call({ErrorHandler error});
+}
+
+/// @nodoc
+class _$SpecializationFailureCopyWithImpl<T, $Res>
+    implements $SpecializationFailureCopyWith<T, $Res> {
+  _$SpecializationFailureCopyWithImpl(this._self, this._then);
+
+  final SpecializationFailure<T> _self;
+  final $Res Function(SpecializationFailure<T>) _then;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(SpecializationFailure<T>(
+      null == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorHandler,
+    ));
+  }
+}
+
+/// @nodoc
+
+class DoctorsLoading<T> implements HomeState<T> {
+  const DoctorsLoading();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DoctorsLoading<T>);
   }
 
   @override
@@ -373,7 +504,146 @@ class SpecializationFailure<T> implements HomeState<T> {
 
   @override
   String toString() {
-    return 'HomeState<$T>.specializationFailure()';
+    return 'HomeState<$T>.doctorsLoading()';
+  }
+}
+
+/// @nodoc
+
+class DoctorsSuccess<T> implements HomeState<T> {
+  const DoctorsSuccess(final List<Doctors?>? docotrdModelList)
+      : _docotrdModelList = docotrdModelList;
+
+  final List<Doctors?>? _docotrdModelList;
+  List<Doctors?>? get docotrdModelList {
+    final value = _docotrdModelList;
+    if (value == null) return null;
+    if (_docotrdModelList is EqualUnmodifiableListView)
+      return _docotrdModelList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DoctorsSuccessCopyWith<T, DoctorsSuccess<T>> get copyWith =>
+      _$DoctorsSuccessCopyWithImpl<T, DoctorsSuccess<T>>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DoctorsSuccess<T> &&
+            const DeepCollectionEquality()
+                .equals(other._docotrdModelList, _docotrdModelList));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_docotrdModelList));
+
+  @override
+  String toString() {
+    return 'HomeState<$T>.doctorsSuccess(docotrdModelList: $docotrdModelList)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DoctorsSuccessCopyWith<T, $Res>
+    implements $HomeStateCopyWith<T, $Res> {
+  factory $DoctorsSuccessCopyWith(
+          DoctorsSuccess<T> value, $Res Function(DoctorsSuccess<T>) _then) =
+      _$DoctorsSuccessCopyWithImpl;
+  @useResult
+  $Res call({List<Doctors?>? docotrdModelList});
+}
+
+/// @nodoc
+class _$DoctorsSuccessCopyWithImpl<T, $Res>
+    implements $DoctorsSuccessCopyWith<T, $Res> {
+  _$DoctorsSuccessCopyWithImpl(this._self, this._then);
+
+  final DoctorsSuccess<T> _self;
+  final $Res Function(DoctorsSuccess<T>) _then;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? docotrdModelList = freezed,
+  }) {
+    return _then(DoctorsSuccess<T>(
+      freezed == docotrdModelList
+          ? _self._docotrdModelList
+          : docotrdModelList // ignore: cast_nullable_to_non_nullable
+              as List<Doctors?>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class DoctorsFailure<T> implements HomeState<T> {
+  const DoctorsFailure(this.error);
+
+  final ErrorHandler error;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DoctorsFailureCopyWith<T, DoctorsFailure<T>> get copyWith =>
+      _$DoctorsFailureCopyWithImpl<T, DoctorsFailure<T>>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DoctorsFailure<T> &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @override
+  String toString() {
+    return 'HomeState<$T>.doctorsFailure(error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DoctorsFailureCopyWith<T, $Res>
+    implements $HomeStateCopyWith<T, $Res> {
+  factory $DoctorsFailureCopyWith(
+          DoctorsFailure<T> value, $Res Function(DoctorsFailure<T>) _then) =
+      _$DoctorsFailureCopyWithImpl;
+  @useResult
+  $Res call({ErrorHandler error});
+}
+
+/// @nodoc
+class _$DoctorsFailureCopyWithImpl<T, $Res>
+    implements $DoctorsFailureCopyWith<T, $Res> {
+  _$DoctorsFailureCopyWithImpl(this._self, this._then);
+
+  final DoctorsFailure<T> _self;
+  final $Res Function(DoctorsFailure<T>) _then;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(DoctorsFailure<T>(
+      null == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorHandler,
+    ));
   }
 }
 

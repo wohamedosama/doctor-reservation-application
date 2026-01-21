@@ -11,7 +11,7 @@ platform :android do
     android_artifact_type:"APK",
     android_artifact_path:"../build/app/outputs/flutter-apk/app-prod-release.apk",
     testers:"mohamedmedo9932@gmail.com, mohammed.ossama@instashop.ae",
-    release_notes:"Handled API error model and finished home screen UI&Logic",
+    release_notes:"Add an icon and change the application name",
     upload_timeout: 600
   )
   end

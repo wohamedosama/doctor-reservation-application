@@ -16,9 +16,8 @@ class AppImages {
   static const String doctorImage5 = 'assets/images/doctor_image5.png';
   static const String doctorImage6 = 'assets/images/doctor_image6.png';
   static const String doctorImage7 = 'assets/images/doctor_image7.png';
-  static const String doctorImage9 = 'assets/images/doctor_image9.png';
-  static const String doctorImage10 = 'assets/images/doctor_image10.png';
-  static const String doctorImage11 = 'assets/images/doctor_image11.png';
+
+  static const String errorMessage = 'assets/images/error_image.png';
 
   // SVG
   static const String doctorIcon = 'assets/svgs/doctor_icon.svg';

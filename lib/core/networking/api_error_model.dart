@@ -28,9 +28,11 @@ class ApiErrorModel {
     try {
       return errors!.entries.map((entry) {
         final value = entry.value;
+
         if (value is List) {
           return value.join(', ');
         }
+
         return value.toString();
       }).join('\n');
     } catch (e) {

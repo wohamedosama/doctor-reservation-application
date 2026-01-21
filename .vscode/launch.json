@@ -14,9 +14,9 @@
       ]
     },
     {
-      "name": "DocDoc Production",
+      "name": "DocDoc",
       "request": "launch",
-      "type": "dart",   
+      "type": "dart",
       "program": "lib/main_prod.dart",
       "args": [
         "--flavor",

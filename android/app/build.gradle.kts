@@ -47,7 +47,7 @@ android {
             resValue(
                 type = "string",
                 name = "app_name",
-                value = "DocDoc Production")
+                value = "DocDoc ")
             //applicationIdSuffix = ".prod"
         }
     }

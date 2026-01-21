@@ -1,3 +1,4 @@
+import 'package:doctor_reservation_app/core/widgets/error_widget.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_reservation_app/features/home/logic/cubit/home_state.dart';
 import 'package:doctor_reservation_app/features/home/presentation/widget/specility_list/specialist_section.dart';
@@ -18,10 +19,14 @@ class SpecilizationBlocBuilder extends StatelessWidget {
         return state.maybeWhen(
           specializationLoading: () => const SpecialistSection(isLoading: true),
           specializationSuccess: (specializationDataList) {
-            var specializationsList = specializationDataList;
-            return setupSpecializationSuccess(specializationsList);
+            return setupSpecializationSuccess(specializationDataList);
           },
-          specializationFailure: (error) => setupError(),
+          specializationFailure: (error) {
+            return ErrorScreenWidget(
+              errorMessage: error.getAllErrorMessages(),
+              showGoHomeButton: true,
+            );
+          },
           orElse: () {
             return const SizedBox.shrink();
           },
@@ -35,10 +40,6 @@ class SpecilizationBlocBuilder extends StatelessWidget {
       specializationsData: specializationsList,
     );
   }
-}
-
-Widget setupError() {
-  return const SizedBox.shrink();
 }
 
 Widget setupLoadingIndicator() {
